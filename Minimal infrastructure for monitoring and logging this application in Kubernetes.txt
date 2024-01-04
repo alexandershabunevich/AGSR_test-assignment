@@ -1,0 +1,44 @@
+Here is an example of an approximate diagram of the minimum infrastructure for monitoring and logging an application in Kubernetes, using Prometheus for monitoring, Grafana for visualization, Elasticsearch for storing logs, Logstash for processing them and Kibana for analysis. 
+
+It is assumed that Prometheus collects metrics from the application, Grafana visualizes this data, Logstash collects logs from Kubernetes, processes them, and transmits them to Elasticsearch, where they are stored, and Kibana is used to analyze and visualize logs.
+
+Each of these components will be launched in Kubernetes as a separate service or via Helm charts, and their configurations can be defined in Kubernetes manifests. 
+For instance, to collect metrics Prometheus can use ServiceMonitor to monitor services and to collect logs, Logstash can be configured to use the Logstash Kubernetes plugin to collect logs from Kubernetes.
+
+Such an infrastructure will help you monitor the status of the application and analyze its logs to ensure effective management and debugging.
+
+
+The minimum visualization is given below:
+
+     +------------------------+
+     |       Prometheus       |
+     |      (Monitoring)      |
+     +-----------+------------+
+                 |
+                 | (Scrapes metrics)
+                 |
+     +-----------v------------+
+     |         Grafana         |
+     |     (Visualization)     |
+     +-----------+------------+
+                 |
+                 | (Queries/logs)
+                 |
+     +-----------v------------+
+     |      Elasticsearch      |
+     |         (Logs)          |
+     +-----------+------------+
+                 |
+                 | (Logs)
+                 |
+     +-----------v------------+
+     |         Logstash        |
+     |      (Log Processing)   |
+     +-----------+------------+
+                 |
+                 | (Processed logs)
+                 |
+     +-----------v------------+
+     |         Kibana          |
+     |    (Log Analysis)       |
+     +-------------------------+
