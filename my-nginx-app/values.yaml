@@ -1,0 +1,9 @@
+namespace:
+  name: "my-nginx-namespace"
+image:
+  repository: "my-nginx-server"
+  tag: "latest"
+message: "Hello from K8S!"
+replicaCount: 3
+app:
+  name: "my-nginx-app"
